@@ -10,7 +10,6 @@ var board = {
 }
 
 function generateBoard (size, difficulty) {
-  console.log(board.cells)
   // avoid failing with 'grid too large' message
   if (size > 6) {
     size = 6
@@ -36,8 +35,6 @@ function generateBoard (size, difficulty) {
   }
 } 
 
-
-
 function startGame() {
   generateBoard(3,"easy")
   for (cell in board.cells) {
@@ -46,7 +43,6 @@ function startGame() {
   document.addEventListener("click", checkForWin)
   document.addEventListener("contextmenu", checkForWin)
   // Don't remove this function call: it makes the game work!
-  
   lib.initBoard()
 }
 
@@ -77,9 +73,12 @@ console.log(board.cells)
 }
 
 function showRestartGame() {
-  document.getElementById('notes').innerHTML = '<button onClick="startGame()">Wanna play again?</button>'
+  document.getElementById('notes').innerHTML = '<button onClick="restartGame()">Wanna play again?</button>'
 }
 
+function restartGame () {
+  location.reload();
+}
 
 // Define this function to count the number of mines around the cell
 // (there could be as many as 8). You don't have to get the surrounding
