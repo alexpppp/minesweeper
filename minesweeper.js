@@ -2,63 +2,40 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {
-  cells: [
-    { row: 0, 
-      col: 0,
-      isMine: false,
-      hidden: true
-    },
-    { row: 0, 
-      col: 1,
-      isMine: false,
-      hidden: true
-    },
-    { row: 0, 
-      col: 2,
-      isMine: true,
-      hidden: true
-    },
-    { row: 1, 
-      col: 0,
-      isMine: false,
-      hidden: true
-    },
-    { row: 1, 
-      col: 1,
-      isMine: false,
-      hidden: true
-    },
-    { row: 1, 
-      col: 2,
-      isMine: false,
-      hidden: true
-    },
-    { row: 2, 
-      col: 0,
-      isMine: false,
-      hidden: true
-    },
-    { row: 2, 
-      col: 1,
-      isMine: true,
-      hidden: true
-    },
-    { row: 2, 
-      col: 2,
-      isMine: true,
-      hidden: true
-    }
-  ]
-  
+  cells: []
 }
 
+function generateBoard (size, difficulty) {
+  if (size > 6) {
+    size = 6
+  }
+  if (difficulty === "easy") {
+    difficulty = 0.2
+  }
+  for (var rowCount = 0; rowCount<size; rowCount++) {
+    for (var colCount = 0; colCount<size; colCount++) {
+      board.cells.push({
+        row: rowCount,
+        col: colCount,
+        isMine: Math.random() < difficulty,
+        isMarked: false,
+        hidden: true
+      })
+    }
+  }
+} 
+
+
+
 function startGame () {
+  generateBoard(7,"easy")
   for (cell in board.cells) {
     board.cells[cell].surroundingMines = countSurroundingMines(cell)
   }
   document.addEventListener("click", checkForWin)
   document.addEventListener("contextmenu", checkForWin)
   // Don't remove this function call: it makes the game work!
+  
   lib.initBoard()
 }
 
@@ -83,14 +60,6 @@ console.log(board.cells)
       }
     }
   }
-  
-  //Rules to fail win
-  // a mine that is not Marked
-  // a non-mine that is hidden
-  // a non-mine that is Marked
-
-
-
   // otherwise, display win message!  
   lib.displayMessage('You win!')
 }
