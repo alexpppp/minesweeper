@@ -36,7 +36,7 @@ function generateBoard (size, difficulty) {
 } 
 
 function startGame() {
-  generateBoard(3,"easy")
+  generateBoard(6,"easy")
   for (cell in board.cells) {
     board.cells[cell].surroundingMines = countSurroundingMines(cell)
   }
@@ -73,7 +73,7 @@ console.log(board.cells)
 }
 
 function showRestartGame() {
-  document.getElementById('notes').innerHTML = '<button onClick="restartGame()">Wanna play again?</button>'
+  document.getElementById('message').innerHTML += '<button class="btn" onClick="restartGame()">Wanna play again?</button>'
 }
 
 function restartGame () {
