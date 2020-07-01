@@ -69,6 +69,7 @@ console.log(board.cells)
   }
   // otherwise, display win message!  
   lib.displayMessage('You win!')
+  document.getElementById('claps').play();
   showRestartGame()
 }
 
