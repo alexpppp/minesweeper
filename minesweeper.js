@@ -78,7 +78,9 @@ function showRestartGame() {
 }
 
 function restartGame () {
-  location.reload();
+  board.cells = [];
+  document.getElementsByClassName('board')[0].innerHTML = " ";
+  startGame();
 }
 
 // Define this function to count the number of mines around the cell
